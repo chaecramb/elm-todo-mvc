@@ -52,7 +52,7 @@ update : Msg -> Model -> Model
 update msg model =
   case msg of
     Add todo -> 
-      { model | model.todos :: todo }
+      { model | todos = todo :: model.todos }
     Complete todo ->
       model
     Delete todo ->
