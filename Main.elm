@@ -44,6 +44,10 @@ initialModel =
   , filter = All
   }
 
+handleKeyPress : Json.Decoder Msg
+handleKeyPress =
+  Json.succeed (Add mockTodo)
+
 update : Msg -> Model -> Model
 update msg model =
   case msg of
@@ -74,7 +78,12 @@ view model =
   , section [class "todoapp"]
     [ header [class "header"]
       [ h1 [] [text "todos"]
-      , input [class "new-todo", placeholder "What needs to be done?", autofocus True] []
+      , input 
+        [class "new-todo"
+        , placeholder "What needs to be done?"
+        , autofocus True
+        , on "keypress" handleKeyPress
+        ] []
       ]
     , section [class "main"]
       [ ul [class "todo-list"]
